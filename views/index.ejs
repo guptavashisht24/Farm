@@ -1,0 +1,311 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<title>Farmer's market | IL RACCOLTO</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="we sell fruits and vegetables" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="css/login_overlay.css" rel='stylesheet' type='text/css' />
+	<link href="css/style6.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="css/shop.css" type="text/css" />
+	<link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/owl.theme.css" type="text/css" media="all">
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<link href="css/fontawesome-all.css" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+	    rel="stylesheet">
+</head>
+
+<body>
+	<div class="banner-top container-fluid" id="home">
+		<% if (flash.length > 0) { %>
+			<div class="alert alert-danger"><%= flash %></div>
+		<% } %>
+		<%- include ('partials/header') %>
+		
+		<!-- banner -->
+		<div class="banner">
+			<div id="carouselExampleIndicators" class="centerImage" data-ride="carousel">
+				<img src="images/f&v.jpg"></img>
+			</div>
+			<!--//banner -->
+		</div>
+	</div>
+	<!--//banner-sec-->
+	<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+		<div class="container-fluid">
+			<div class="inner-sec-shop px-lg-4 px-3">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-3">
+								<div>
+									<a href="/add">
+									<button id="additem" type="button" class="btn btn-primary btn-lg" style="display: none;">Add Items</button>
+									</a>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<!--<form class="form-inline" action="/" method="POST">-->
+									<table style="width: 100%;">
+										<tr>
+											<td style="width: 33%;">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend" style="vertical-align: middle;">
+													<label class="input-group-text" for="inputGroupSelect01">Options</label>
+													</div>
+													<select id="typeoff" name="type" class="custom-select" id="inputGroupSelect01">
+													<option value="" <% if(type=="" ){ %>selected <% } %>></option>
+													<option value="fruit" <% if(type=="fruit" ){ %>selected <% } %>>fruit</option>
+													<option value="vegetable" <% if(type=="vegetable" ){ %>selected <% } %>>vegetable</option>
+													</select>
+												</div>
+											</td>
+											<td style="width: 33%;">
+												<div class="form-group input-group">
+													<input id="nameof" type="text" class="form-control" name="name" placeholder="search" value=<%=name%>>
+												</div>
+											</td>
+											<td style="width: 33%; text-align: right;" class="form-group">
+												<a id="searchLink">
+													<button type="submit" class="btn btn-dark">Search</button>
+												</a>
+											</td>
+										</tr>
+									</table>
+								<!--</form>-->
+							</div>
+						</div>
+					</div>
+				<div id="food" class="row">
+
+					<% items.items.forEach(function(item){ %>
+
+						<div class="col-md-3 product-men women_two py-3"> <div class="product-googles-info googles"> <div class="men-pro-item"> <div class="men-thumb-item"> <img src="images/<%= item.image %>" class="img-fluid" alt="" style="height: 207.600px;"> <div class="men-cart-pro"> <div class="inner-men-cart-pro"> <a href="/api/farm/<%= item._id %>" class="link-product-add-cart">Quick View</a> </div> </div> </div> <div class="item-info-product"> <div class="info-product-price"> <div class="grid_meta"> <div class="product_price"> <h4> <a href="/api/farm/<%= item._id %>"><%= item.name %></a> </h4> <div class="grid-price mt-2"> <span class="money ">$<%= item.price %>/lb</span> </div> </div> </div> <div class="googles single-item hvr-outline-out"> <form action="#" method="post"> <input type="hidden" name="cmd" value="_cart"> <input type="hidden" name="add" value="1"> <input type="hidden" name="googles_item" value="Farenheit"> <input type="hidden" name="amount" value=575.00"> <button type="submit" class="googles-cart pgoogles-cart"> </button> </form> </div> </div> <div class="clearfix"></div> </div> </div> </div> </div>
+
+					<% }); %>
+					
+				</div>
+
+				<div style="display: flex; justify-content: center;">
+					<!--pagination-->
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<% if (items && items.previous){ %>
+								<li class="page-item"><a class="page-link" href="/?page=<%= items.previous.page %>&type=<%= type %>&name=<%= name %>">Previous</a></li>
+							<% } %>
+						  	<% if (items && items.next){ %>
+						  		<li class="page-item"><a class="page-link" href="/?page=<%= items.next.page %>&type=<%= type %>&name=<%= name %>">Next</a></li>
+						 	<% } %>
+						</ul>
+					</nav>
+				</div>
+
+				<!-- /grids -->
+				<div class="bottom-sub-grid-content py-lg-5 py-3">
+					<div class="row">
+						<div class="col-lg-6 bottom-sub-grid text-center">
+							<div class="bt-icon">
+
+								<span class="far fa-hand-paper"></span>
+							</div>
+
+							<h4 class="sub-tittle-w3layouts my-lg-4 my-3">Satisfaction Guaranteed</h4>
+							<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+							<p>
+								<a href="/" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
+							</p>
+						</div>
+						<!-- /.col-lg-4 -->
+						<div class="col-lg-6 bottom-sub-grid text-center">
+							<div class="bt-icon">
+								<span class="fas fa-rocket"></span>
+							</div>
+
+							<h4 class="sub-tittle-w3layouts my-lg-4 my-3">Fast Shipping</h4>
+							<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+							<p>
+								<a href="/" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
+							</p>
+						</div>
+						<!-- /.col-lg-4 -->
+						<!-- /.col-lg-4 -->
+					</div>
+				</div>
+				<!-- //grids -->
+				<!-- /clients-sec -->
+				<div class="testimonials p-lg-5 p-3 mt-4">
+					<div class="row last-section">
+						<div class="col-lg-3 footer-top-w3layouts-grid-sec">
+							<div class="mail-grid-icon text-center">
+								<i class="fas fa-gift"></i>
+							</div>
+							<div class="mail-grid-text-info">
+								<h3>Genuine Product</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur</p>
+							</div>
+						</div>
+						<div class="col-lg-3 footer-top-w3layouts-grid-sec">
+							<div class="mail-grid-icon text-center">
+								<i class="fas fa-shield-alt"></i>
+							</div>
+							<div class="mail-grid-text-info">
+								<h3>Secure Products</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur</p>
+							</div>
+						</div>
+						<div class="col-lg-3 footer-top-w3layouts-grid-sec">
+							<div class="mail-grid-icon text-center">
+								<i class="fas fa-dollar-sign"></i>
+							</div>
+							<div class="mail-grid-text-info">
+								<h3>Cash on Delivery</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur</p>
+							</div>
+						</div>
+						<div class="col-lg-3 footer-top-w3layouts-grid-sec">
+							<div class="mail-grid-icon text-center">
+								<i class="fas fa-truck"></i>
+							</div>
+							<div class="mail-grid-text-info">
+								<h3>Easy Delivery</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- //clients-sec -->
+			</div>
+		</div>
+	</section>
+	<!-- about -->
+	<!--footer -->
+
+	<%- include ('partials/footer') %>
+
+	<!-- //footer -->
+
+	<!--jQuery-->
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<!-- newsletter modal -->
+	<!-- Modal -->
+	<!-- Modal -->
+	
+	<script>
+		$(document).ready(function () {
+			$("#myModal").modal();
+		});
+	</script>
+	<!-- // modal -->
+
+	<!--search jQuery-->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<script src="js/classie-search.js"></script>
+	<!--//search jQuery-->
+	<!-- cart-js -->
+	<script src="js/minicart.js"></script>
+	<script>
+		googles.render();
+
+		googles.cart.on('googles_checkout', function (evt) {
+			var items, len, i;
+
+			if (this.subtotal() > 0) {
+				items = this.items();
+
+				for (i = 0, len = items.length; i < len; i++) {}
+			}
+		});
+	</script>
+	<!-- //cart-js -->
+	<script>
+		$(document).ready(function () {
+			$(".button-log a").click(function () {
+				$(".overlay-login").fadeToggle(200);
+				$(this).toggleClass('btn-open').toggleClass('btn-close');
+			});
+		});
+		$('.overlay-close1').on('click', function () {
+			$(".overlay-login").fadeToggle(200);
+			$(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
+			open = false;
+		});
+	</script>
+	<!-- carousel -->
+	<script src="js/owl.carousel.js"></script>
+	<script>
+	</script>
+
+	<!-- //end-smooth-scrolling -->
+
+
+	<!-- dropdown nav -->
+	<script>
+		$(document).ready(function () {
+			$(".dropdown").hover(
+				function () {
+					$('.dropdown-menu', this).stop(true, true).slideDown("fast");
+					$(this).toggleClass('open');
+				},
+				function () {
+					$('.dropdown-menu', this).stop(true, true).slideUp("fast");
+					$(this).toggleClass('open');
+				}
+			);
+		});
+	</script>
+	<!-- //dropdown nav -->
+  <script src="js/move-top.js"></script>
+    <script src="js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 900);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            
+			document.getElementById("searchLink").onclick = function(){
+				var typeoff = document.getElementById("typeoff").value;
+				var nameof = document.getElementById("nameof").value;
+				var str = `/?page=1&type=${typeoff}&name=${nameof}`
+				document.getElementById("searchLink").href = str;
+			}
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <!--// end-smoth-scrolling -->
+
+	<script src="js/bootstrap.js"></script>
+	<%- include ('partials/additem') %>
+	<!-- js file -->
+</body>
+
+</html>

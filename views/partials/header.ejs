@@ -1,0 +1,296 @@
+<!-- header -->
+<style>
+    .error {
+	background: #fcc;
+	border: 2px solid #c99;
+}
+
+#registerForm{
+    display:none;
+}
+
+#logoutIcon{
+    display: none;
+}
+
+</style>
+<script>
+
+//cookie info consume logic
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+window.onload = function(){
+
+
+    var regLink = document.getElementById('registerLink');
+    var loginHeader = document.getElementById('loginHeader');
+var loginform = document.getElementById('loginForm');
+var regform = document.getElementById('registerForm');
+var logoutBtn = document.getElementById('logoutIcon')
+
+regLink.addEventListener('click' , function(e){ 
+    loginform.style.display = "none";
+    regform.style.display = "block";
+    regLink.style.display = "none";
+    loginHeader.innerHTML = "Register Now"
+ });
+ 
+var email = document.getElementById("email");
+var span1 = document.createElement("small");
+span1.style.display = "none"; //hide the span element
+email.parentNode.appendChild(span1);
+
+var password = document.getElementById("pwd2");
+var span2 = document.createElement("small");
+span2.style.display = "none"; //hide the span element
+password.parentNode.appendChild(span2);
+
+var confirmpwd = document.getElementById("confirm");
+var span3 = document.createElement("small");
+span3.style.display = "none"; //hide the span element
+confirmpwd.parentNode.appendChild(span3);
+
+var emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/
+var pwdPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*+]).{6,}$/
+email.onfocus = function(){
+    
+    email.classList.remove('error')
+
+    span1.innerHTML = "e.g. pga210001@utdallas.edu"
+    span1.style.display = "block"
+    span1.style.color = 'gray'
+    
+}
+
+email.onblur = function(){
+    span1.style.display="none"   
+}
+
+password.onfocus = function(){
+
+    password.classList.remove('error')
+    
+    span2.innerHTML = "At least 6 characters, one uppercase letter, one number and one special character"
+    span2.style.display = "block"
+    span2.style.color = 'gray'
+}
+
+password.onblur = function(){
+    span2.style.display="none"   
+}
+
+confirmpwd.onfocus = function(){
+    
+    confirmpwd.classList.remove('error')
+    
+}
+
+confirmpwd.onblur = function(){
+    span3.style.display="none"   
+}
+
+
+
+var form = document.getElementById("registerForm");
+form.onsubmit = function(e){
+    
+    if (confirmpwd.value === password.value){
+        confirmpwd.classList.remove('error')
+        password.classList.remove('error')
+    }
+    else{
+        password.classList.add('error')
+        confirmpwd.classList.add('error')
+        span3.innerHTML = "The passwords do not match"
+        span3.style.color = 'red'
+        span3.style.display = "block";
+        e.preventDefault();
+    }
+
+    if (!(pwdPattern.test(password.value))){
+        span2.innerHTML = "The password field should contain at least six characters, one uppercase letter, one number and one special character (!,@,#,$,%,^,&,*,+)"
+        span2.style.color = 'red'
+        span2.style.display = "block"
+        password.classList.add('error');
+        e.preventDefault();
+    }
+
+    if (emailPattern.test(email.value)){
+        email.classList.remove('error')
+    }
+    else{
+        span1.innerHTML = "Please enter a valid email (e.g. pga210001@utdallas.edu)"
+        span1.style.color = 'red'
+        span1.style.display = "block"
+        email.classList.add('error')
+        e.preventDefault();
+
+    }
+}
+
+
+
+$(function() {
+    $.ajax({
+        type: "GET",
+        xhrFields: { withCredentials: true },
+        url: "/",
+        success: function (userinfo) {
+            if(getCookie('username') != undefined){
+                $('#userIcon').html('  Hello, ' + getCookie('username'));
+                logoutBtn.style.display = "inline-block";
+                logoutBtn.style.float = "right";
+
+                $('#loginHeader').html('  Hello, ' + getCookie('username'));
+                loginform.style.display = "none";
+                regform.style.display = "none";
+                regLink.style.display = "none";
+            }
+        }
+    });
+});
+
+if(document.cookie.indexOf('username')>-1){
+    document.getElementById('orders').style.display = "block";
+}
+
+}
+</script>
+
+<!-- <script src="js/testpage.js"></script> -->
+<header>
+    <div class="row">
+        <div class="col-md-3 top-info text-left mt-lg-4">
+            <h3><b>Fresh from Farm</b></h3>
+        </div>
+        <div class="col-md-6 logo-w3layouts text-center">
+            <h1 class="logo-w3layouts">
+                <a class="navbar-brand" href="/">
+                    IL RACCOLTO </a>
+            </h1>
+        </div>
+
+        <div class="col-md-3 top-info-cart text-right mt-lg-4">
+            <ul class="cart-inner-info">
+                <li class="button-log">
+                    <a class="btn-open" href="#">
+                        <span id="userIcon" class="fa fa-user" aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li class="galssescart galssescart2 cart cart box_1">
+                    <!-- <form action="#" method="post" class="last"> -->
+                        <input type="hidden" name="cmd" value="_cart">
+                        <input type="hidden" name="display" value="1">
+                        <a href="/checkout">
+                        <button class="top_googles_cart" type="submit" name="submit" value="">
+                            My Cart
+                            <i class="fas fa-cart-arrow-down"></i>
+                        </button>
+                        </a>
+                    <!-- </form> -->
+                </li>
+            </ul>
+            <!---->
+            <div class="overlay-login text-left">
+                <button type="button" class="overlay-close1">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <div class="wrap">
+                    <h5 class="text-center mb-4" id="loginHeader">Login Now</h5>
+                    <div class="login p-5 bg-dark mx-auto mw-100" id="loginDiv">
+
+                        <form action="/login" id="loginForm" method="POST">
+                            <div class="form-group">
+                                <label class="mb-2">Username</label>
+                                <input type="text" name="username" class="form-control" id="usernameInput1" aria-describedby="emailHelp" placeholder="" required="">
+                            </div>
+                            <!-- <div class="form-group">
+                                <label class="mb-2">Email address</label>
+                                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="" required="">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div> -->
+                            <div class="form-group">
+                                <label class="mb-2">Password</label>
+                                <input type="password" name="password" class="form-control" id="pwd1" placeholder="" required="">
+                            </div>
+                            <!-- <div class="form-check mb-2">
+                                <input type="checkbox" class="form-check-input" id="isAdmin">
+                                <label class="form-check-label" for="exampleCheck1">Admin</label>
+                            </div> -->
+                            <button type="submit" id="loginBtn" class="btn btn-primary submit mb-4">Sign In</button>
+                        </form>
+
+                        <button id="registerLink">New user signup</button>
+
+                        <form action="/register" id="registerForm" method="POST">
+                            <div class="form-group">
+                                <label class="mb-2">Username</label>
+                                <input type="text" name="username" class="form-control" id="usernameInput2" aria-describedby="usernameHelp" placeholder="" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-2">Email address</label>
+                                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="" required="">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-2">Password</label>
+                                <input type="password" name="password" class="form-control" id="pwd2" placeholder="" required="">
+                            </div>
+                            <div class="form-group">
+                                <label class="mb-2">Confirm Password</label>
+                                <input type="password" name="confirmpassword" class="form-control" id="confirm" placeholder="" required="">
+                            </div>
+                            <div class="form-check mb-2">
+                                <input type="checkbox" class="form-check-input" name="isAdmin" id="isAdmin">
+                                <label class="form-check-label" for="isAdmin">Admin?</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary submit mb-4">Register</button>
+                        </form>
+
+                    </div>
+                    <!---->
+                </div>
+            </div>
+            <!---->
+        </div>
+    </div>
+
+    <label class="top-log mx-auto"></label>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light top-header mb-2">
+
+        <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                
+            </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav nav-mega mx-auto">
+                <li class="nav-item active">
+                    <a class="nav-link ml-lg-0" href="/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item" id="orders" style="display: none;">
+                    <a class="nav-link" href="/orderlist">My Orders</a>
+                </li>
+                <li class="nav-item" id="logoutIcon">
+                    <a class="nav-link" style="color: #ff4e00;" href="/logout">
+                        <span class="fas fa-sign-out-alt" aria-hidden="true">Logout</span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>

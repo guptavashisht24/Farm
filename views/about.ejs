@@ -1,0 +1,193 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+	<title>Farmer's market | IL RACCOLTO</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="we sell fruits and vegetables" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="css/login_overlay.css" rel='stylesheet' type='text/css' />
+	<link href="css/style6.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="css/shop.css" type="text/css" />
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<link href="css/fontawesome-all.css" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+	    rel="stylesheet">
+</head>
+
+<body>
+	<div class="banner-top container-fluid" id="home">
+		<!-- header -->
+		<%- include ('partials/header') %>
+		<!-- banner -->
+		<div class="banner_inner">
+			<div class="services-breadcrumb">
+				<div class="inner_breadcrumb">
+
+					<ul class="short">
+						<li>
+							<a href="/">Home</a>
+							<i>|</i>
+						</li>
+						<li>About Us</li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<!--//banner -->
+	</div>
+	<!--// header_top -->
+	<!-- top Products -->
+	<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+		<div class="container-fluid">
+
+			<div class="inner-sec-shop px-lg-4 px-3">
+				<div class="about-content py-lg-5 py-3">
+					<div class="row">
+
+						<div class="col-lg-6 p-0">
+							<img src="images/f&v3.jpg" alt="Goggles" class="img-fluid">
+						</div>
+						<div class="col-lg-6 about-info">
+							<h3 class="tittle-w3layouts text-left mb-lg-5 mb-3">About Us</h3>
+							<p class="my-xl-4 my-lg-3 my-md-4 my-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+								dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+								book.
+							</p>
+
+							<a href="/" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
+
+						</div>
+					</div>
+				</div>
+				
+
+			</div>
+		</div>
+	</section>
+
+
+	<!--footer -->
+	<%- include ('partials/footer') %>
+	<!-- //footer -->
+
+	<!--jQuery-->
+	<script src="js/jquery-2.2.3.min.js"></script>
+	<!-- newsletter modal -->
+	<!--search jQuery-->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<script src="js/classie-search.js"></script>
+	<!--//search jQuery-->
+	<!-- cart-js -->
+	<script src="js/minicart.js"></script>
+	<script>
+		googles.render();
+
+		googles.cart.on('googles_checkout', function (evt) {
+			var items, len, i;
+
+			if (this.subtotal() > 0) {
+				items = this.items();
+
+				for (i = 0, len = items.length; i < len; i++) {}
+			}
+		});
+	</script>
+	<!-- //cart-js -->
+	<script>
+		$(document).ready(function () {
+			$(".button-log a").click(function () {
+				$(".overlay-login").fadeToggle(200);
+				$(this).toggleClass('btn-open').toggleClass('btn-close');
+			});
+		});
+		$('.overlay-close1').on('click', function () {
+			$(".overlay-login").fadeToggle(200);
+			$(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
+			open = false;
+		});
+	</script>
+	<!-- carousel -->
+	<!-- dropdown nav -->
+	<script>
+		$(document).ready(function () {
+			$(".dropdown").hover(
+				function () {
+					$('.dropdown-menu', this).stop(true, true).slideDown("fast");
+					$(this).toggleClass('open');
+				},
+				function () {
+					$('.dropdown-menu', this).stop(true, true).slideUp("fast");
+					$(this).toggleClass('open');
+				}
+			);
+		});
+	</script>
+	<!-- //dropdown nav -->
+	<!-- Count-down -->
+	<link href="css/simplyCountdown.css" rel='stylesheet' type='text/css' />
+	<script>
+		var d = new Date();
+		simplyCountdown('simply-countdown-custom', {
+			year: d.getFullYear(),
+			month: d.getMonth() + 2,
+			day: 25
+		});
+	</script>
+	<!--// Count-down -->
+	<script src="js/move-top.js"></script>
+    <script src="js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event) {
+                event.preventDefault();
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 900);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            /*
+            						var defaults = {
+            							  containerID: 'toTop', // fading element id
+            							containerHoverID: 'toTopHover', // fading element hover id
+            							scrollSpeed: 1200,
+            							easingType: 'linear' 
+            						 };
+            						*/
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+    </script>
+    <!--// end-smoth-scrolling -->
+
+
+	<script src="js/bootstrap.js"></script>
+	<!-- js file -->
+</body>
+
+</html>

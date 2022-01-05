@@ -1,0 +1,299 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Farmer's market | IL RACCOLTO</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="keywords" content="we sell fruits and vegetables" />
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<link href="/css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="/css/login_overlay.css" rel='stylesheet' type='text/css' />
+	<link href="/css/style6.css" rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="/css/shop.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="/css/checkout.css">
+	<link href="/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css' />
+	<link href="/css/style.css" rel='stylesheet' type='text/css' />
+	<link href="/css/fontawesome-all.css" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+	<link
+		href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
+		rel="stylesheet">
+</head>
+
+<body>
+	<div class="banner-top container-fluid" id="home">
+		<!-- header -->
+		<%- include ('partials/header') %>
+			<!-- banner -->
+			<div class="banner_inner">
+				<div class="services-breadcrumb">
+					<div class="inner_breadcrumb">
+
+						<ul class="short">
+							<li>
+								<a href="index.html">Home</a>
+								<i>|</i>
+							</li>
+							<li>Checkout </li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<!--//banner -->
+	</div>
+	<!--// header_top -->
+	<!--checkout-->
+	<section class="banner-bottom-wthreelayouts py-lg-5 py-3">
+		<div class="container">
+			<div class="inner-sec-shop px-lg-4 px-3" id = "contentDiv">
+				<h3 class="tittle-w3layouts my-lg-4 mt-3">Checkout </h3>
+				
+
+			</div>
+
+		</div>
+	</section>
+	<!--//checkout-->
+	<!--footer -->
+	<%- include ('partials/footer') %>
+		<!-- //footer -->
+		<!--jQuery-->
+		<script src="/js/jquery-2.2.3.min.js"></script>
+		<!-- newsletter modal -->
+		<!--search jQuery-->
+		<script src="/js/modernizr-2.6.2.min.js"></script>
+		<script src="/js/classie-search.js"></script>
+		<!--//search jQuery-->
+		<!-- cart-js -->
+		<script src="/js/minicart.js"></script>
+		<script>
+			googles.render();
+
+			googles.cart.on('googles_checkout', function (evt) {
+				var items, len, i;
+
+				if (this.subtotal() > 0) {
+					items = this.items();
+
+					for (i = 0, len = items.length; i < len; i++) { }
+				}
+			});
+		</script>
+		<!-- //cart-js -->
+		<script>
+			$(document).ready(function () {
+				$(".button-log a").click(function () {
+					$(".overlay-login").fadeToggle(200);
+					$(this).toggleClass('btn-open').toggleClass('btn-close');
+				});
+			});
+			$('.overlay-close1').on('click', function () {
+				$(".overlay-login").fadeToggle(200);
+				$(".button-log a").toggleClass('btn-open').toggleClass('btn-close');
+				open = false;
+			});
+		</script>
+		<!-- carousel -->
+		<!-- easy-responsive-tabs -->
+		<script src="/js/easy-responsive-tabs.js"></script>
+		<script>
+			$(document).ready(function () {
+				$('#horizontalTab').easyResponsiveTabs({
+					type: 'default', //Types: default, vertical, accordion           
+					width: 'auto', //auto or any width like 600px
+					fit: true, // 100% fit in a container
+					closed: 'accordion', // Start closed if in accordion view
+					activate: function (event) { // Callback function if tab is switched
+						var $tab = $(this);
+						var $info = $('#tabInfo');
+						var $name = $('span', $info);
+						$name.text($tab.text());
+						$info.show();
+					}
+				});
+				$('#verticalTab').easyResponsiveTabs({
+					type: 'vertical',
+					width: 'auto',
+					fit: true
+				});
+			});
+		</script>
+		<!--quantity-->
+		<script>
+			$('.value-plus').on('click', function () {
+				var divUpd = $(this).parent().find('.value'),
+					newVal = parseInt(divUpd.text(), 10) + 1;
+				divUpd.text(newVal);
+			});
+
+			$('.value-minus').on('click', function () {
+				var divUpd = $(this).parent().find('.value'),
+					newVal = parseInt(divUpd.text(), 10) - 1;
+				if (newVal >= 1) divUpd.text(newVal);
+			});
+		</script>
+		<!--quantity-->
+		<!--close-->
+		<script>
+			$(document).ready(function (c) {
+				$('.close1').on('click', function (c) {
+					$('.rem1').fadeOut('slow', function (c) {
+						$('.rem1').remove();
+						alert("vashisht")
+					});
+				});
+			});
+		</script>
+		<script>
+			$(document).ready(function (c) {
+				$('.close2').on('click', function (c) {
+					$('.rem2').fadeOut('slow', function (c) {
+						$('.rem2').remove();
+					});
+				});
+			});
+		</script>
+		<script>
+			$(document).ready(function (c) {
+				$('.close3').on('click', function (c) {
+					$('.rem3').fadeOut('slow', function (c) {
+						$('.rem3').remove();
+					});
+				});
+			});
+		</script>
+		<!--//close-->
+
+		<!-- dropdown nav -->
+		<script>
+
+			const updateArray = (id,value) => {
+				let cart = localStorage.getItem("cart")
+				cart = JSON.parse(cart)
+				const orders = cart.orders
+				var foundIndex = orders.findIndex(x => x.id == id);
+				orders[foundIndex].quantity = parseInt(value)
+				localStorage.setItem("cart", JSON.stringify(cart))
+
+			}
+
+			const removeIndex = (id, key) => {
+				let cart = JSON.parse(localStorage.getItem("cart"))
+				x = document.getElementById("Remove" + key)
+				x.remove()
+				const orders = cart.orders
+				var foundIndex = orders.findIndex(x => x.id == id);
+				orders.splice(foundIndex, 1)
+				localStorage.setItem("cart", JSON.stringify(cart))
+			}
+		</script>
+		<!-- //dropdown nav -->
+		<script src="/js/move-top.js"></script>
+		<script src="/js/easing.js"></script>
+		<script>
+			jQuery(document).ready(function ($) {
+				$(".scroll").click(function (event) {
+					event.preventDefault();
+					$('html,body').animate({
+						scrollTop: $(this.hash).offset().top
+					}, 900);
+				});
+			});
+		</script>
+		<script>
+			$(document).ready(function () {
+				/*
+										var defaults = {
+											  containerID: 'toTop', // fading element id
+											containerHoverID: 'toTopHover', // fading element hover id
+											scrollSpeed: 1200,
+											easingType: 'linear' 
+										 };
+										*/
+
+				$().UItoTop({
+					easingType: 'easeOutQuart'
+				});
+
+
+				renderUI = () => {
+					var cart = JSON.parse(localStorage.getItem("cart"))
+					const allDiv = document.getElementById("contentDiv")
+					if(cart && cart.orders && document.cookie.indexOf("username")>-1){
+						const content = cart.orders
+					let data = ""
+					content.map((item, index) => {
+						selectContent = ''
+						for (var i = 1; i <= item.maxquantity; i++) {
+							const selected = i == item.quantity ? "selected" : ""
+							selectContent += '<option value="' + i + '" ' + selected + '>' + i + ' Qty </option>'
+						}
+						data += '<tr id="Remove' + index + '"><td class="invert">' + (index + 1) + '</td><td class="invert"><div class="quantity"><div class="quantity-select"><select id="country1" onchange=updateArray("'+item.id+'",this.value) class="frm-field required sect">' + selectContent + '</select></div></div></td><td class="invert">' + item.name + '</td><td class="invert">' + item.price + '</td><td class="invert"><div class="rem"><div onclick=removeIndex("'+item.id+'",' + index + ')>Remove</div></div></td></tr>'
+					})
+					const child = '<div class="checkout-right"><table class="timetable_sub"><thead><tr><th>SL No.</th><th>Quantity</th><th>Product Name</th><th>Price/Piece</th><th>Remove</th></tr></thead><tbody id="table"></tbody></table></div><div class="checkout-left row"><div class="col-md-4 checkout-left-basket" onclick="placeOrder()"><h4>Place order</h4></div><div class="clearfix"> </div></div>'
+					allDiv.insertAdjacentHTML( 'beforeend', child);
+					document.getElementById("table").innerHTML = data
+					} else {
+
+						const child = `<h3>Either you're not logged in or your cart is empty :(</h3>`
+						allDiv.insertAdjacentHTML( 'beforeend', child );
+					}
+					
+				}
+
+				renderUI()
+
+				placeOrder=()=>{
+					const cart = localStorage.getItem("cart")
+					const networkData = JSON.parse(cart)
+					const data = networkData.orders
+					fetch("/api/cart/order", {
+						method: "POST",
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(data)
+					}).then(res=>
+						res.json()
+					).then((res)=>{
+						if(res && res.success){
+							localStorage.removeItem("cart")
+							alert("Your order has been placed!")
+							setTimeout(()=>{
+								window.location.href = "/"
+							},1000)
+						}
+						else{
+							alert("Please try again after sometime! We're experiencing technical difficulties")
+						}
+					}).catch((err)=>{
+						console.log(err)
+						alert("Please try again")
+					})
+				}
+
+			});
+		</script>
+		<!--// end-smoth-scrolling -->
+
+
+		<script src="/js/bootstrap.js"></script>
+		<!-- js file -->
+</body>
+
+</html>
